@@ -1,0 +1,46 @@
+ALGORITHM La_Prrase 
+VAR
+Phrase : string;
+N_c  : INTEGER := 0;
+N_m : INTEGER := 0;
+N_v : INTEGER := 0;
+C : Char;
+
+BEGIN
+    DO
+        Write("Entrez une phrase qui se termine par un point")
+            read(Phrase);
+            For i=0; As len (Phrase) To Do 
+                C := Phrase[i];   
+            Next i
+            END_For
+    WHILE(C<>".")
+
+    For i=0; As len (Phrase) To Do 
+        N_c :=N_c+1;
+    Next i
+    END_For
+    Write("Le nombre de caracteres dans la phrase est" N_c )
+
+
+    For j=0; As len (Phrase) To Do 
+        C := Phrase[j]; 
+        IF (C :="") To Do 
+            N_m :=N_m+1;
+        END_IF
+    Next i
+    END_For
+    Write("Le nombre de mots dans la phrase est" N_m )
+
+    For k=0; As len (Phrase) To Do 
+        C := Phrase[k];
+    SWITCH (C)
+        case "a": N_v := N_v+1 break;
+        case "e": N_v := N_v+1 break;
+        case "i": N_v := N_v+1 break;
+        case "o": N_v := N_v+1 break;
+        case "u": N_v := N_v+1 break;
+        case "y": N_v := N_v+1 break;
+    Write("Le nombre de voyelles dans la phrase est" N_v);
+    END_For
+END
