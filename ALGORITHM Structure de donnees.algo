@@ -1,0 +1,152 @@
+//Probeme 1 Solution 1
+ALGORITHM Som_Elmnt_Distinct
+VAR 
+Ens_1 :ARRAY_OF INTEGER[n];
+Ens_2 :ARRAY_OF INTEGER[m];
+i,j,Som_Elmnt_Distinct:INTEGER;
+Present : BOOLEAN;
+
+BEGIN
+    Write("Donner la taille du premier ensemble")
+        read(n);
+    Write("Donner les valeurs du premier ensemble")
+        FOR i FROM 0 TO n-1 STEP 1  DO
+            read(Ens_1[i]);
+        END_FOR
+
+    Write("Donner la taille du second ensemble")
+        read(m);
+    Write("Donner les valeurs du second ensemble")
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            read(Ens_2[j]);
+        END_FOR
+
+        Som_Elmnt_Distinct = 0;
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            IF (Ens_1[i]=Ens_2[j]) THEN 
+                Present = true; 
+            END_IF 
+        END_FOR 
+            IF (Present = false) THEN
+                Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
+            END_IF
+    END_FOR
+
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        FOR i FROM 0 TO n-1 STEP 1  DO  
+            IF (Ens_2[j]=Ens_1[i]) THEN 
+                Present = true;
+            END_IF 
+
+        END_FOR
+            IF (Present = false) THEN
+                Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_2[j];
+            END_IF
+    END_FOR
+        Write("la somme des elements distincts des deux ensembles est" Som_Elmnt_Distinct);
+
+END 
+
+//Probeme 1 Solution 2 avec le tableau hachage 
+ALGORITHM Som_Elmnt_Distinct
+VAR 
+Ens_1 :ARRAY_OF INTEGER[n];
+Ens_2 :ARRAY_OF INTEGER[m];
+htab : HASH_TABLE<INTEGER,INTEGER>
+i,j,Som_Elmnt_Distinct:INTEGER;
+
+BEGIN
+    Write("Donner la taille du premier et deuxiéme ensemble")
+        read(n,m);
+         Write("Donner les valeurs du premier et dexiéme ensemble")
+
+        FOR i FROM 0 TO n-1 STEP 1  DO
+            read(Ens_1[i]);
+        END_FOR
+
+         FOR J FROM 0 TO M-1 STEP 1  DO
+            read(Ens_2[i]);
+        END_FOR
+        
+        Som_Elmnt_Distinct = 0;
+//Insertion des valeurs dans le htab "le tableau de hachage" 
+         FOR i FROM 0 TO n-1 STEP 1  DO
+            htab.Insert(Ens_1[i],Ens_1[i]);
+        END_FOR
+
+         FOR J FROM 0 TO M-1 STEP 1  DO
+           htab.Insert(Ens_2[i],Ens_2[i]);
+        END_FOR
+    
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            IF ( htab.get(Ens_1[i]) = htab.get(Ens_2[j]) ) THEN 
+                Write(Ens_1[i]"est un element commun des deux ensembles");
+            ELSE 
+                Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
+            END_IF
+        END_FOR
+    END_FOR
+
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        FOR i FROM 0 TO n-1 STEP 1  DO 
+            IF ( htab.get(Ens_2[j]) = htab.get(Ens_1[i]) ) THEN 
+                Write(Ens_2[j]"est un element commun des deux ensembles");
+            ELSE 
+                 Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
+            END_IF
+        END_FOR
+    END_FOR
+
+END 
+
+
+//Probeme 2 Somme des elements qui chevauchent
+ALGORITHM Som_Elmnt_Commun
+VAR 
+Ens_1 :ARRAY_OF INTEGER[n];
+Ens_2 :ARRAY_OF INTEGER[m];
+i,j,Som_Elmnt_Commun:INTEGER;
+Present : BOOLEAN;
+
+BEGIN
+    Write("Donner la taille du premier et deuxiéme ensemble")
+        read(n,m);
+         Write("Donner les valeurs du premier et dexiéme ensemble")
+
+        FOR i FROM 0 TO n-1 STEP 1  DO
+            read(Ens_1[i]);
+        END_FOR
+
+         FOR J FROM 0 TO M-1 STEP 1  DO
+            read(Ens_2[i]);
+        END_FOR
+
+    Som_Elmnt_Commun= 0;
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO m-1 STEP 1  DO
+            IF (Ens_1[i]<>Ens_2[j]) THEN 
+                Present = false; 
+            END_IF 
+        END_FOR 
+            IF (Present = true) THEN
+                Som_Elmnt_Commun = Som_Elmnt_Commun + Ens_1[i];
+            END_IF
+    END_FOR
+
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        FOR i FROM 0 TO n-1 STEP 1  DO
+            IF (Ens_2[j]<>Ens_1[i]) THEN 
+                Present = false; 
+            END_IF 
+        END_FOR 
+            IF (Present = true) THEN
+                Som_Elmnt_Commun = Som_Elmnt_Commun + Ens_2[i];
+            END_IF
+    END_FOR
+        Write("la somme des elements distincts des deux ensembles est" Som_Elmnt_Distinct);
+
+END 
