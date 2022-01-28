@@ -1,0 +1,101 @@
+//Produit Scalaire par une procedure
+PROCEDURE dot_product (V1 : ARRAY_OF FLOAT[N], V2 : ARRAY_OF FLOAT[N])
+VAR  
+  i,N :INTEGER;                   
+  ps : FLOAT
+
+BEGIN
+    ps = 0; 
+        FOR i FROM 0 TO N-1 STEP 1  DO
+             ps := ps + V1[i]*V2(i]
+             break;
+        END_FOR
+END
+
+//ALGORITHM pour verifier si deux  Vecteurs sont Orthogonaux avec procedure 
+
+ALGORITHM Vecteurs_Orthogonaux
+    VAR  
+  i, Longeur :INTEGER;  
+  Vecteur1 : ARRAY_OF FLOAT[Longeur];     
+  Vecteur2 : ARRAY_OF FLOAT[Longeur];           
+  res: FLOAT;
+
+  BEGIN
+
+    Write("Donner la longeur du premier vecteur");
+        read(Longeur);
+    Write("Donner les valeurs du premier vecteur");
+        FOR i FROM 0 TO Longeur-1 STEP 1  DO
+            read(Vecteur1[i]);
+        END_FOR
+
+     Write("Donner la longeur du deuxieme vecteur");
+        read(Longeur);
+    Write("Donner les valeurs du deuxieme vecteur");
+        FOR i FROM 0 TO Longeur-1 STEP 1  DO
+            read(Vecteur2[i]);
+        END_FOR
+        //Appel de la procedure doc_product 
+    res : = dot_product(Vecteur1,Vecteur2);
+        // Verification de l'orthogonalité des vecteurs 
+    IF (res=0) THEN
+       Write("les deux vecteurs sont orthogonaux")
+    ELSE
+        Write("les deux vecteurs ne sont pas orthogonaux")
+    END_IF
+
+END
+
+
+
+
+
+//Produit Scalaire par une fonction
+FUNCTION dot_product (V1 : ARRAY_OF FLOAT[N], V2 : ARRAY_OF FLOAT[N]) : FLOAT
+VAR   
+  i, N :INTEGER;                   
+  ps : FLOAT
+BEGIN
+    ps = 0; 
+        FOR i FROM 0 TO N-1 STEP 1  DO
+             ps := ps + V1[i]*V2(i]
+        END_FOR
+    RETURN ps;
+END
+
+//ALGORITHM pour verifier si deux  Vecteurs sont Orthogonaux avec la fonction 
+
+ALGORITHM Vecteurs_Orthogonaux
+    VAR  
+  i, Longeur :INTEGER;  
+  Vecteur1 : ARRAY_OF FLOAT[Longeur];     
+  Vecteur2 : ARRAY_OF FLOAT[Longeur];           
+  res: FLOAT;
+
+
+BEGIN
+
+    Write("Donner la longeur du premier vecteur");
+        read(Longeur);
+    Write("Donner les valeurs du premier vecteur");
+        FOR i FROM 0 TO Longeur-1 STEP 1  DO
+            read(Vecteur1[i]);
+        END_FOR
+
+     Write("Donner la longeur du deuxieme vecteur");
+        read(Longeur);
+    Write("Donner les valeurs du deuxieme vecteur");
+        FOR i FROM 0 TO Longeur-1 STEP 1  DO
+            read(Vecteur2[i]);
+        END_FOR
+        //Appel de la fonction doc_product 
+    res : = dot_product(Vecteur1,Vecteur2);
+        // Verification de l'orthogonalité des vecteurs 
+    IF (res=0) THEN
+       Write("les deux vecteurs sont orthogonaux")
+    ELSE
+        Write("les deux vecteurs ne sont pas orthogonaux")
+    END_IF
+
+END
