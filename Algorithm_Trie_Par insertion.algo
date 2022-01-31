@@ -1,0 +1,27 @@
+//Procedure d'echange
+PROCEDURE swap(VAR xp, VAR yp : INTEGER)
+VAR
+   tmp : INTEGER;
+BEGIN
+  tmp := xp;
+  xp := yp;
+  yp := tmp;
+END
+/* Procedure de selection  */
+PROCEDURE selection (VAR tab : ARRAY_OF INTEGER)
+VAR
+   i,j min_index,n : INTEGER;
+BEGIN
+   n := tab.length;
+   // Le deplacement des elmts 
+   FOR i FROM 0 TO n-2 STEP 1  DO
+     min_index := i;
+       FOR j  FROM i  TO n-i-2 STEP 1  DO
+           IF (tab[j]<tab[min_index]) THEN
+             min_index := j;
+           END_IF
+       END_FOR
+   // Echange de l'element mininum trouver avec le premier element 
+     swap(tab[min_index],tab[i]) 
+    END_FOR
+END
