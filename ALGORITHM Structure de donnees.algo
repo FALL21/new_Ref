@@ -60,46 +60,34 @@ i,j,Som_Elmnt_Distinct:INTEGER;
 BEGIN
     Write("Donner la taille du premier et deuxiéme ensemble")
         read(n,m);
-         Write("Donner les valeurs du premier et dexiéme ensemble")
-
-        FOR i FROM 0 TO n-1 STEP 1  DO
-            read(Ens_1[i]);
-        END_FOR
-
-         FOR J FROM 0 TO M-1 STEP 1  DO
-            read(Ens_2[i]);
-        END_FOR
-        
-        Som_Elmnt_Distinct = 0;
 //Insertion des valeurs dans le htab "le tableau de hachage" 
-         FOR i FROM 0 TO n-1 STEP 1  DO
-            htab.Insert(Ens_1[i],Ens_1[i]);
+        FOR i FROM 0 TO n-1 STEP 1  DO
+             Write("Donner les valeurs du premier ensemble")
+            read(Ens_1[i]);
+            Som_Elmnt_Distinct = 0;
+             htab.Insert(Ens_1[i],Ens_1[i]);
+             FOR j FROM 0 TO m-1 STEP 1  DO
+                IF ( htab.get(Ens_1[i]) = htab.get(Ens_2[j]) ) THEN 
+                    Write(Ens_1[i]"est un element commun des deux ensembles");
+                ELSE 
+                    Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
+                END_IF
+             END_FOR  
         END_FOR
 
-         FOR J FROM 0 TO M-1 STEP 1  DO
-           htab.Insert(Ens_2[i],Ens_2[i]);
+         FOR j FROM 0 TO m-1 STEP 1  DO
+          Write("Donner les valeurs du dexiéme ensemble")
+            read(Ens_2[i]);
+            Som_Elmnt_Distinct = 0;
+            FOR i FROM 0 TO n-1 STEP 1  DO 
+                IF ( htab.get(Ens_2[j]) = htab.get(Ens_1[i]) ) THEN 
+                    Write(Ens_2[j]"est un element commun des deux ensembles");
+                ELSE 
+                    Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
+                END_IF
+            END_FOR
         END_FOR
-    
-    FOR i FROM 0 TO n-1 STEP 1  DO
-        FOR j FROM 0 TO m-1 STEP 1  DO
-            IF ( htab.get(Ens_1[i]) = htab.get(Ens_2[j]) ) THEN 
-                Write(Ens_1[i]"est un element commun des deux ensembles");
-            ELSE 
-                Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
-            END_IF
-        END_FOR
-    END_FOR
-
-    FOR j FROM 0 TO m-1 STEP 1  DO
-        FOR i FROM 0 TO n-1 STEP 1  DO 
-            IF ( htab.get(Ens_2[j]) = htab.get(Ens_1[i]) ) THEN 
-                Write(Ens_2[j]"est un element commun des deux ensembles");
-            ELSE 
-                 Som_Elmnt_Distinct = Som_Elmnt_Distinct + Ens_1[i];
-            END_IF
-        END_FOR
-    END_FOR
-
+  
 END 
 
 
@@ -112,41 +100,38 @@ i,j,Som_Elmnt_Commun:INTEGER;
 Present : BOOLEAN;
 
 BEGIN
-    Write("Donner la taille du premier et deuxiéme ensemble")
+
+        Write("Donner la taille du premier et deuxiéme ensemble");
         read(n,m);
-         Write("Donner les valeurs du premier et dexiéme ensemble")
-
-        FOR i FROM 0 TO n-1 STEP 1  DO
+     FOR i FROM 0 TO n-1 STEP 1  DO
+         Write("Donner les valeurs du premier ensemble");
             read(Ens_1[i]);
-        END_FOR
-
-         FOR J FROM 0 TO M-1 STEP 1  DO
-            read(Ens_2[i]);
-        END_FOR
-
-    Som_Elmnt_Commun= 0;
-
-    FOR i FROM 0 TO n-1 STEP 1  DO
+            Som_Elmnt_Commun= 0;
         FOR j FROM 0 TO m-1 STEP 1  DO
-            IF (Ens_1[i]<>Ens_2[j]) THEN 
+             IF (Ens_1[i]<>Ens_2[j]) THEN 
                 Present = false; 
-            END_IF 
+             END_IF 
         END_FOR 
-            IF (Present = true) THEN
+             IF (Present = true) THEN
                 Som_Elmnt_Commun = Som_Elmnt_Commun + Ens_1[i];
-            END_IF
-    END_FOR
+             END_IF
+     END_FOR
 
-    FOR j FROM 0 TO m-1 STEP 1  DO
-        FOR i FROM 0 TO n-1 STEP 1  DO
-            IF (Ens_2[j]<>Ens_1[i]) THEN 
-                Present = false; 
-            END_IF 
-        END_FOR 
-            IF (Present = true) THEN
-                Som_Elmnt_Commun = Som_Elmnt_Commun + Ens_2[i];
-            END_IF
-    END_FOR
+
+     FOR j FROM 0 TO m-1 STEP 1  DO
+         Write("Donner les valeurs du deuxieme ensemble");
+            read(Ens_2[i]);
+            Som_Elmnt_Commun= 0;
+            
+            FOR i FROM 0 TO n-1 STEP 1  DO
+                IF (Ens_2[j]<>Ens_1[i]) THEN 
+                    Present = false; 
+                END_IF 
+            END_FOR 
+                IF (Present = true) THEN
+                    Som_Elmnt_Commun = Som_Elmnt_Commun + Ens_2[i];
+                 END_IF        
+        END_FOR
         Write("la somme des elements distincts des deux ensembles est" Som_Elmnt_Distinct);
 
 END 
